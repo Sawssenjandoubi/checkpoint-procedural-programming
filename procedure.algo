@@ -1,0 +1,63 @@
+
+PROCEDURE read(VAR n:INTEGER):INTEGER
+VAR
+   
+BEGIN
+    REPEAT
+ wrrite("donner longueur");
+read(n);
+    UNTIL (n<=0)
+END
+RETURN n;
+END
+
+PROCEDURE remplir_vect(var v1 : ARRAY_OF FLOAT ,var v2 : ARRAY_OF float,n:INTEGER)
+VAR
+     i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        read(v1[i]);
+        read(v2[i]);
+    END_FOR
+END
+
+
+
+
+PROCEDURE dot_product(v1 : ARRAY_OF FLOAT ,v2 : ARRAY_OF float,n:INTEGER,VAR ps:float)
+VAR
+   i:INTEGER;
+    
+BEGIN
+      ps :=0;
+    FOR i FROM 0 TO n-1 STEP 1 DO
+    
+        ps := ps+v1[i]*v2[i];
+    
+    END_FOR
+END
+
+PROCEDURE affiche_result(produit:float)
+VAR
+    
+BEGIN
+    IF (produit =0) THEN
+       write("les 2 vecteurs sont orthogonaux");
+       
+       ELSE
+            write("les 2 vecteurs ne sont pas orthogonaux");
+    END_IF
+END
+
+ALGORITHM prod_scalaire
+VAR
+    v1: ARRAY_OF float[100];
+    v2: ARRAY_OF float[100];
+    lg: INTEGER;
+   dot_prod:float;
+BEGIN
+   lg:=read();
+   remplir_vect(v1,v2,lg) ;
+   dot_product(v1,v2,lg,dot_prod);
+   affiche_result(dot_prod);
+END
